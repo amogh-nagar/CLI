@@ -2,13 +2,7 @@ const { info } = require('console');
 const http = require('http');
 const Customer = require('./models/customer');
 
-// const server = http.createServer(async (req, res) => {
-//   const customer = new Customer('Amogh', 'a@gmail.com');
-//   await customer.save();
-//   Customer.fetchall((data) => {
-//     console.log(data);
-//   });
-// });
+
 
 const addcustomer = (customer1) => {
   const customer = new Customer(customer1);
@@ -61,4 +55,3 @@ exports.findcustomer = findcustomer;
 exports.updatecustomer = updatecustomer;
 exports.deletecustomer = deletecustomer;
 exports.allcustomers = allcustomers;
-// server.listen(3000);

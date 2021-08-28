@@ -1,6 +1,13 @@
 const path = require('path');
 const fs = require('fs');
 
+const p = path.join(
+    path.dirname(process.mainModule.filename),
+    'data',
+    'data.json'
+  );
+
+
 module.exports = class Customer {
   constructor(obj) {
     this.id = Math.random() * 1000;
@@ -9,11 +16,7 @@ module.exports = class Customer {
   }
 
   save() {
-    const p = path.join(
-      path.dirname(process.mainModule.filename),
-      'data',
-      'data.json'
-    );
+    
     let customers = [];
     return new Promise((resolve, reject) => {
       fs.readFile(p, (err, filecontent) => {
@@ -33,11 +36,7 @@ module.exports = class Customer {
   }
 
   static fetchall(cb) {
-    const p = path.join(
-      path.dirname(process.mainModule.filename),
-      'data',
-      'data.json'
-    );
+    
     fs.readFile(p, (err, filecontent) => {
       if (err) {
         cb(null);
@@ -48,11 +47,7 @@ module.exports = class Customer {
   }
 
   static find(id, cb) {
-    const p = path.join(
-      path.dirname(process.mainModule.filename),
-      'data',
-      'data.json'
-    );
+   
     fs.readFile(p, (err, filecontent) => {
       if (err) {
         cb(null);
@@ -69,11 +64,7 @@ module.exports = class Customer {
   }
 
   static update(obj, cb) {
-    const p = path.join(
-      path.dirname(process.mainModule.filename),
-      'data',
-      'data.json'
-    );
+    
     fs.readFile(p, (err, filecontent) => {
       if (err) {
         cb(null);
@@ -101,11 +92,7 @@ module.exports = class Customer {
   }
 
   static remove(id, cb) {
-    const p = path.join(
-      path.dirname(process.mainModule.filename),
-      'data',
-      'data.json'
-    );
+    
     fs.readFile(p, (err, filecontent) => {
       if (err) {
         cb('Some error occurred');

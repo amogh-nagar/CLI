@@ -1,3 +1,4 @@
+#!/user/bin/env node
 var program = require('commander');
 const { prompt } = require('inquirer');
 const {
@@ -61,10 +62,10 @@ program
   .command('find')
   .alias('f')
   .description('Find a customer')
-  .action((id) => {
- prompt(questionsforupdate[0]).then((answer)=>{
-    findcustomer(answer.id);
- })  
+  .action(() => {
+    prompt(questionsforupdate[0]).then((answer) => {
+      findcustomer(answer.id);
+    });
   });
 
 program
@@ -90,4 +91,6 @@ program
   .action(() => {
     allcustomers();
   });
+
+  
 program.parse(process.argv);
