@@ -1,12 +1,13 @@
-const path = require('path');
-const fs = require('fs');
+const path = require("path");
+const fs = require("fs");
 
 const p = path.join(
-    path.dirname(process.mainModule.filename),
-    'data',
-    'data.json'
-  );
-
+  // path.dirname(process.mainModule.filename),
+  __dirname,
+  "..",
+  "data",
+  "data.json"
+);
 
 module.exports = class Customer {
   constructor(obj) {
@@ -16,7 +17,6 @@ module.exports = class Customer {
   }
 
   save() {
-    
     let customers = [];
     return new Promise((resolve, reject) => {
       fs.readFile(p, (err, filecontent) => {
@@ -36,7 +36,6 @@ module.exports = class Customer {
   }
 
   static fetchall(cb) {
-    
     fs.readFile(p, (err, filecontent) => {
       if (err) {
         cb(null);
@@ -47,7 +46,6 @@ module.exports = class Customer {
   }
 
   static find(id, cb) {
-   
     fs.readFile(p, (err, filecontent) => {
       if (err) {
         cb(null);
@@ -64,7 +62,6 @@ module.exports = class Customer {
   }
 
   static update(obj, cb) {
-    
     fs.readFile(p, (err, filecontent) => {
       if (err) {
         cb(null);
@@ -84,7 +81,7 @@ module.exports = class Customer {
           if (!err) {
             cb(customer);
           } else {
-            console.info('Some error occurred');
+            console.info("Some error occurred");
           }
         });
       }
@@ -92,21 +89,20 @@ module.exports = class Customer {
   }
 
   static remove(id, cb) {
-    
     fs.readFile(p, (err, filecontent) => {
       if (err) {
-        cb('Some error occurred');
+        cb("Some error occurred");
       } else {
         const customer = JSON.parse(filecontent).find((c) => c.id === +id);
         if (!customer) {
-          cb('Not found!');
+          cb("Not found!");
           return;
         }
         const customers = JSON.parse(filecontent).filter((c) => c.id !== +id);
         fs.writeFile(p, JSON.stringify(customers), (err) => {
           if (!err) {
-            cb('Deleted!');
-          } else cb('Some error occurred');
+            cb("Deleted!");
+          } else cb("Some error occurred");
         });
       }
     });
